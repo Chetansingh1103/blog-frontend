@@ -13,9 +13,8 @@ import {
 } from './actionTypes';
 
 
-const API_URL = 'http://localhost:3001/user';
 
-const API_URL_MAIN = 'http://localhost:3001';
+const API_URL_MAIN = process.env.REACT_APP_BACKEND_URL;
 
 
 export const getAllUserRequest = () => {
@@ -89,7 +88,7 @@ export const getAllUsers = (token) => {
         dispatch(getAllUserRequest());
 
         try{
-            const response = await axios.get(`${API_URL}/get-all-users`, {
+            const response = await axios.get(`${API_URL_MAIN}/user/get-all-users`, {
                 headers: {
                     "x-acciojob": token
                 }

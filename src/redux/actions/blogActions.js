@@ -22,7 +22,7 @@ import {
 
 } from './actionTypes';
 
-const API_URL = 'http://localhost:3001/blog';
+const API_URL = process.env.REACT_APP_BACKEND_URL;
 
 export const createBlogRequest = () => {
     return {
@@ -151,7 +151,7 @@ export const createBlog = (blogData, token) => {
         dispatch(createBlogRequest());
         try {
             
-            const response = await axios.post(`${API_URL}/create`, blogData, {
+            const response = await axios.post(`${API_URL}/blog/create`, blogData, {
                 headers: {
                     "x-acciojob": token
                 }
@@ -179,7 +179,7 @@ export const updateBlog = (blogData, token) => {
         try {
             console.log("first")
             console.log(blogData, token);
-            const response = await axios.put(`${API_URL}/edit-blog`, {
+            const response = await axios.put(`${API_URL}/blog/edit-blog`, {
                 blogId: blogData.blogId,
                 title: blogData.newTitle,
                 textBody: blogData.newTextBody
@@ -212,7 +212,7 @@ export const deleteBlog = (id, token) => {
     return async (dispatch) => {
         dispatch(deleteBlogRequest());
         try {
-            const response = await axios.delete(`${API_URL}/delete-blog/${id}`, {
+            const response = await axios.delete(`${API_URL}/blog/delete-blog/${id}`, {
                 headers: {
                     "x-acciojob": token
                 }
@@ -237,7 +237,7 @@ export const displayAllBlog = () => {
     return async (dispatch) => {
         dispatch(displayAllBlogRequest());
         try {
-            const response = await axios.get(`${API_URL}/blog`);
+            const response = await axios.get(`${API_URL}/blog/blog`);
             dispatch(displayAllBlogSuccess(response.data));
         } catch (error) {
             dispatch(displayAllBlogFailure(error.response.data));
@@ -249,7 +249,7 @@ export const displayAllBlogsByUser = (token) => {
     return async (dispatch) => {
         dispatch(displayAllBlogsByUserRequest());
         try {
-            const response = await axios.get(`${API_URL}/get-user-blogs`, {
+            const response = await axios.get(`${API_URL}/blog/get-user-blogs`, {
                 headers: {
                     "x-acciojob": token
                 }
@@ -271,7 +271,7 @@ export const displayHomepageBlogs = (token) => {
     return async (dispatch) => {
         dispatch(displayHomepageBlogsRequest());
         try {
-            const response = await axios.get(`${API_URL}/get-homepage-blogs`, {
+            const response = await axios.get(`${API_URL}/blog/get-homepage-blogs`, {
                 headers: {
                     "x-acciojob": token
                 }

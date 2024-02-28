@@ -11,7 +11,7 @@ import {
   
 } from './actionTypes';
 
-const API_URL = 'http://localhost:3001/user';
+const API_URL = process.env.REACT_APP_BACKEND_URL
 
 // Action Creators
 export const registerRequest = () => ({
@@ -47,7 +47,7 @@ export const registerUser = (userData) => {
   return async (dispatch) => {
     dispatch(registerRequest());
     try {
-      const response = await axios.post(`${API_URL}/register`, userData);
+      const response = await axios.post(`${API_URL}/user/register`, userData);
       
       // if status is ok then proceed
       if(response.data.status === 200){
@@ -69,7 +69,7 @@ export const loginUser = (userData) => {
   return async (dispatch) => {
     dispatch(loginRequest());
     try {
-      const response = await axios.post(`${API_URL}/login`, userData);
+      const response = await axios.post(`${API_URL}/user/login`, userData);
 
       // if status is ok then proceed
       if(response.data.status === 200){
