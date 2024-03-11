@@ -12,10 +12,6 @@ const Homepage = () => {
     const dispatch = useDispatch()
     const token = authState.token;
 
-    console.log(blogState.blogs);
-
-    console.log(authState.token)
-
     useEffect(() => {
 
         dispatch(displayHomepageBlogs(token));

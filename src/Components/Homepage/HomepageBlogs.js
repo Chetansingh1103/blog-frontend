@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Button, Card, Form } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 const HomePageBlogs = ({blogData}) => {
 
@@ -20,16 +20,6 @@ const HomePageBlogs = ({blogData}) => {
     };
 
     const formattedDateTime = dateTime.toLocaleString('en-US', options);
-
-
-
-    const token = useSelector(state => state.auth.token)
-    const dispatch = useDispatch()
-    
-
-    
-
-    
 
     return (
         <div>

@@ -39,7 +39,7 @@ import {
           ...state,
           loading: false,
           error: null,
-          success: action.payload,
+          success: action.payload.success,
         };
       case LOGIN_SUCCESS:
         return {
@@ -55,7 +55,7 @@ import {
           ...state,
           token: null,
           loading: false,
-          error: action.payload,
+          error: action.payload.error,
           success: null
         };
       default:

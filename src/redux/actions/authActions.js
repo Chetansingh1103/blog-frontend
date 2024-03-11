@@ -20,12 +20,12 @@ export const registerRequest = () => ({
 
 export const registerSuccess = (success) => ({
   type: REGISTER_SUCCESS,
-  payload: success,
+  payload: {success},
 });
 
 export const registerFailure = (error) => ({
   type: REGISTER_FAILURE,
-  payload: error,
+  payload: {error},
 });
 
 export const loginRequest = () => ({
@@ -39,7 +39,7 @@ export const loginSuccess = (token,success) => ({
 
 export const loginFailure = (error) => ({
   type: LOGIN_FAILURE,
-  payload: error,
+  payload: {error},
 });
 
 // Async Actions with Thunk
@@ -52,7 +52,6 @@ export const registerUser = (userData) => {
       // if status is ok then proceed
       if(response.data.status === 200){
         dispatch(registerSuccess(response.data));
-        console.log(response.data);
         setTimeout(() => {
           window.location.href = "/login";
         },1500)
@@ -60,7 +59,6 @@ export const registerUser = (userData) => {
 
     } catch (error) {
       dispatch(registerFailure(error.response.data.message));
-     // console.log(error.response.data.message);
     }
   };
 };
@@ -73,18 +71,15 @@ export const loginUser = (userData) => {
 
       // if status is ok then proceed
       if(response.data.status === 200){
-
         setTimeout(() => {
           dispatch(loginSuccess(response.data.data.token, response.data.message));
           localStorage.setItem('token', response.data.data.token)
-
         },1000)
        
       }
       
     } catch (error) {
       dispatch(loginFailure(error.response.data.message));
-      console.log(error)
     }
   };
 };

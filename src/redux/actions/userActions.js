@@ -94,8 +94,6 @@ export const getAllUsers = (token) => {
                 }
             })
 
-            console.log(response.data, token)
-
             if(response.data.status === 200){
                 dispatch(getAllUserSuccess(response.data.data, response.data.message));
             }
@@ -103,7 +101,6 @@ export const getAllUsers = (token) => {
         }
         catch(error){
             dispatch(getAllUserFailure(error.response.data.message));
-            console.log(error.response.data.message);
         }
 
     }
